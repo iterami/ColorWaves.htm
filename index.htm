@@ -1,0 +1,19 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>ColorWaves</title>
+<link href=css/colorwaves.css rel=stylesheet>
+
+SEIZURE WARNING! FLASHING COLORS!<br>
+<input onclick=pause(!pause_state) type=button value=Un/[P]ause>
+<input onclick=randomize() type=button value=[R]andomize>
+<select id=orientation>
+  <option value=0>Horizontal</option>
+  <option selected value=1>Vertical</option>
+</select>
+<input id=wave-count style=width:50px value=10>
+<input id=wave-move-interval style=width:50px value=100>
+<input onclick=reset() type=button value=Reset>
+<br>
+<span id=waves></span>
+
+<script src=js/colorwaves.js></script>

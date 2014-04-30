@@ -1,2 +1,1 @@
-ColorWaves
-==========
+Perpetual liquid-esque color mixer.
