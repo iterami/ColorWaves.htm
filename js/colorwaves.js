@@ -12,16 +12,17 @@ function recreate_waves(){
     if(document.getElementById('orientation').value == 1){
         // vertical
         do{
-            document.getElementById(counter).style.display='inline-block';
-            document.getElementById(counter).style.height='420px';
-            document.getElementById(counter).style.width='42px';
+            document.getElementById(counter).style.display = 'inline-block';
+            document.getElementById(counter).style.height = '420px';
+            document.getElementById(counter).style.width = '42px';
         }while(counter--);
+
     }else{
         // horizontal
         do{
-            document.getElementById(counter).style.display='block';
-            document.getElementById(counter).style.height='42px';
-            document.getElementById(counter).style.width='100%';
+            document.getElementById(counter).style.display = 'block';
+            document.getElementById(counter).style.height = '42px';
+            document.getElementById(counter).style.width = '100%';
         }while(counter--);
     }
 }
@@ -96,13 +97,22 @@ function update_waves(){
         // set color CSS, prevent negative values
         document.getElementById(counter).style.backgroundColor = 
           '#'
-          + (new_colors[0] > 0 ? new_colors[0] : 0)
-          + (new_colors[1] > 0 ? new_colors[1] : 0)
-          + (new_colors[2] > 0 ? new_colors[2] : 0);
+          + (new_colors[0] > 0
+            ? new_colors[0]
+            : 0
+          )
+          + (new_colors[1] > 0
+            ? new_colors[1]
+            : 0
+          )
+          + (new_colors[2] > 0
+            ? new_colors[2]
+            : 0
+          );
     }while(counter--);
 }
 
-var color_generators = [0,0,0,0,0,0];
+var color_generators = [0, 0, 0, 0, 0, 0];
 var pause_state = 0;
 var timer = 0;
 
