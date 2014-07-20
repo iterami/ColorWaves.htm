@@ -43,19 +43,15 @@ function randomize(){
     // set random RGB directions and positions
     var wave_count = parseInt(document.getElementById('wave-count').value);
     color_generators = [
-      random_number(wave_count),// R position
-      [1, -1][random_number(2)],// R direction
-      random_number(wave_count),// G position
-      [1, -1][random_number(2)],// G direction
-      random_number(wave_count),// B position
-      [1, -1][random_number(2)] // B direction
+      Math.floor(Math.random() * wave_count),// R position
+      [1, -1][Math.floor(Math.random() * 2)],// R direction
+      Math.floor(Math.random() * wave_count),// G position
+      [1, -1][Math.floor(Math.random() * 2)],// G direction
+      Math.floor(Math.random() * wave_count),// B position
+      [1, -1][Math.floor(Math.random() * 2)] // B direction
     ];
 
     update_waves();
-}
-
-function random_number(i){
-    return Math.floor(Math.random() * i);
 }
 
 function reset(){
