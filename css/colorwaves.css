@@ -8,3 +8,7 @@ div{
     margin: auto;
     width: 42px;
 }
+input{
+    background: #000;
+    color: #aaa;
+}
