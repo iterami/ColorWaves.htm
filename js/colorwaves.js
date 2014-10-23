@@ -25,6 +25,9 @@ function recreate_waves(){
             document.getElementById(loop_counter).style.width = '100%';
         }while(loop_counter--);
     }
+
+    // Update waves.
+    update_waves();
 }
 
 function pause(new_pause_state){
@@ -61,6 +64,7 @@ function reset(){
         document.getElementById('wave-count').value = 10;
         document.getElementById('wave-move-interval').value = 100;
 
+        randomize();
         recreate_waves();
         // Unpause.
         pause(false); 
@@ -68,8 +72,7 @@ function reset(){
 }
 
 function update_waves(){
-    // move RGB color generators
-    // change direction on collision with edge
+    // Move RGB color generators and change direction on collision with edge.
     var loop_counter = 2;
     do{
         color_generators[loop_counter * 2] += color_generators[loop_counter * 2 + 1];
