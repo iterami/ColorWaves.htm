@@ -59,16 +59,17 @@ function randomize(){
 }
 
 function reset(){
-    if(confirm('Reset?')){
-        document.getElementById('orientation').value = 1;
-        document.getElementById('wave-count').value = 10;
-        document.getElementById('wave-move-interval').value = 100;
-
-        randomize();
-        recreate_waves();
-        // Unpause.
-        pause(false); 
+    if(!confirm('Reset?')){
+        return;
     }
+
+    document.getElementById('orientation').value = 1;
+    document.getElementById('wave-count').value = 10;
+    document.getElementById('wave-move-interval').value = 100;
+
+    randomize();
+    recreate_waves();
+    pause(false); 
 }
 
 function update_waves(){
