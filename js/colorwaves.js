@@ -69,7 +69,7 @@ function randomize(){
 }
 
 function reset(){
-    if(!confirm('Reset?')){
+    if(!confirm('Reset settings?')){
         return;
     }
 
@@ -127,6 +127,10 @@ function update_waves(){
 var color_generators = [0, 0, 0, 0, 0, 0];
 var pause_state = false;
 var timer = 0;
+
+document.getElementById('wave-move-interval').oninput = function(e){
+    pause(pause_state);
+};
 
 window.onkeydown = function(e){
     var key = window.event ? event : e;
