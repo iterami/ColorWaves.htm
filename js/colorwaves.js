@@ -1,3 +1,13 @@
+function init(){
+    recreate_waves();
+    randomize();
+
+    pause(false);
+
+    document.getElementById('orientation').onchange = recreate_waves;
+    document.getElementById('wave-count').oninput = recreate_waves;
+}
+
 function recreate_waves(){
     // Generate and display wave HTML.
     var loop_counter = parseInt(document.getElementById('wave-count').value) - 1;
@@ -118,14 +128,6 @@ var color_generators = [0, 0, 0, 0, 0, 0];
 var pause_state = false;
 var timer = 0;
 
-recreate_waves();
-randomize();
-// Sets project into unpaused state.
-pause(pause_state);
-
-document.getElementById('orientation').onchange = recreate_waves;
-document.getElementById('wave-count').oninput = recreate_waves;
-
 window.onkeydown = function(e){
     var key = window.event ? event : e;
     key = key.charCode ? key.charCode : key.keyCode;
@@ -140,4 +142,4 @@ window.onkeydown = function(e){
     }
 };
 
-window.onload = recreate_waves;
+window.onload = init;
