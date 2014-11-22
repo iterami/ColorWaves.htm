@@ -133,8 +133,7 @@ document.getElementById('wave-move-interval').oninput = function(e){
 };
 
 window.onkeydown = function(e){
-    var key = window.event ? event : e;
-    key = key.charCode ? key.charCode : key.keyCode;
+    var key = e.keyCode || e.which;
 
     // R: randomize wave color positions.
     if(key === 82){
