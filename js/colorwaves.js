@@ -31,12 +31,12 @@ function recreate_waves(){
 }
 
 function pause(new_pause_state){
-    clearInterval(timer);
+    window.clearInterval(timer);
 
     pause_state = new_pause_state;
     // If unpaused, update waves periodically.
     if(!pause_state){
-        timer = setInterval(
+        timer = window.setInterval(
           'update_waves()',
           parseInt(document.getElementById('wave-move-interval').value)
         );
