@@ -18,3 +18,7 @@ input[type=button],
 select{
     cursor: pointer;
 }
+#wave-count,
+#wave-move-interval{
+    width: 50px;
+}
