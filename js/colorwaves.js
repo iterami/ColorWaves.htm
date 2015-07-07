@@ -1,3 +1,5 @@
+'use strict';
+
 function recreate_waves(){
     // Generate and display wave HTML.
     var loop_counter = parseInt(document.getElementById('wave-count').value) - 1;
