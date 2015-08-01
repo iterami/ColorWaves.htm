@@ -9,24 +9,22 @@ function recreate_waves(){
     }while(loop_counter--);
     document.getElementById('waves').innerHTML = wave_html;
 
-    // Set orientation CSS.
-    loop_counter = parseInt(document.getElementById('wave-count').value) - 1;
-    if(document.getElementById('orientation').value == 1){
-        // Vertical orientation.
-        do{
-            document.getElementById(loop_counter).style.display = 'inline-block';
-            document.getElementById(loop_counter).style.height = '420px';
-            document.getElementById(loop_counter).style.width = '42px';
-        }while(loop_counter--);
-
-    }else{
-        // Horizontal orientation.
-        do{
-            document.getElementById(loop_counter).style.display = 'block';
-            document.getElementById(loop_counter).style.height = '42px';
-            document.getElementById(loop_counter).style.width = '100%';
-        }while(loop_counter--);
+    // Set orientation CSS to vertical by default...
+    var display = 'inline-block';
+    var height = '420px';
+    var width = '42px';
+    // ...or horizontal, if selected.
+    if(document.getElementById('orientation').value == 0){
+        display = 'block';
+        height = '42px';
+        width = '100%';
     }
+    loop_counter = parseInt(document.getElementById('wave-count').value) - 1;
+    do{
+        document.getElementById(loop_counter).style.display = display;
+        document.getElementById(loop_counter).style.height = height;
+        document.getElementById(loop_counter).style.width = width;
+    }while(loop_counter--);
 
     // Update waves.
     update_waves();
