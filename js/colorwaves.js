@@ -2,7 +2,8 @@
 
 function recreate_waves(){
     // Generate and display wave HTML.
-    var loop_counter = parseInt(document.getElementById('wave-count').value) - 1;
+    var wave_count = parseInt(document.getElementById('wave-count').value) - 1;
+    var loop_counter = wave_count;
     var wave_html = '';
     do{
         wave_html += '<div id=' + loop_counter + '></div>';
@@ -19,7 +20,7 @@ function recreate_waves(){
         height = '42px';
         width = '100%';
     }
-    loop_counter = parseInt(document.getElementById('wave-count').value) - 1;
+    loop_counter = wave_count;
     do{
         document.getElementById(loop_counter).style.display = display;
         document.getElementById(loop_counter).style.height = height;
@@ -75,9 +76,10 @@ function reset(){
 function update_waves(){
     // Move RGB color generators and change direction on collision with edge.
     var loop_counter = 2;
+    var wave_count = parseInt(document.getElementById('wave-count').value) - 1;
     do{
         color_generators[loop_counter * 2] += color_generators[loop_counter * 2 + 1];
-        if(color_generators[loop_counter * 2] > parseInt(document.getElementById('wave-count').value) - 1){
+        if(color_generators[loop_counter * 2] > wave_count){
             color_generators[loop_counter * 2 + 1] = -1;
 
         }else if(color_generators[loop_counter * 2] < 1){
@@ -86,7 +88,7 @@ function update_waves(){
     }while(loop_counter--);
 
     // Update wave colors colors.
-    loop_counter = parseInt(document.getElementById('wave-count').value) - 1;
+    loop_counter = wave_count;
     var new_colors = [];
     do{
         // Color is based on distance from generator.
@@ -118,9 +120,6 @@ var color_generators = [0, 0, 0, 0, 0, 0];
 var pause_state = false;
 var timer = 0;
 
-document.getElementById('wave-move-interval').oninput = function(e){
-    pause(pause_state);
-};
 
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
@@ -136,6 +135,10 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(){
+    document.getElementById('wave-move-interval').oninput = function(e){
+        pause(pause_state);
+    };
+
     recreate_waves();
     randomize();
 
