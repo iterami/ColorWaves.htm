@@ -64,9 +64,14 @@ function reset(){
         return;
     }
 
-    document.getElementById('orientation').value = 1;
-    document.getElementById('wave-count').value = 10;
-    document.getElementById('wave-move-interval').value = 100;
+    var ids = {
+      'orientation': 1,
+      'wave-count': 10,
+      'wave-move-interval': 100,
+    };
+    for(var id in ids){
+        document.getElementById(id).value = ids[id];
+    }
 
     randomize();
     recreate_waves();
