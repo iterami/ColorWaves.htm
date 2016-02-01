@@ -38,7 +38,7 @@ function pause(new_pause_state){
     // If unpaused, update waves periodically.
     if(!pause_state){
         timer = window.setInterval(
-          'update_waves()',
+          update_waves,
           parseInt(document.getElementById('wave-move-interval').value)
         );
     }
