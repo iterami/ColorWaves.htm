@@ -75,7 +75,7 @@ function reset(){
 
     randomize();
     recreate_waves();
-    pause(false); 
+    pause(false);
 }
 
 function update_waves(){
@@ -104,7 +104,7 @@ function update_waves(){
         ];
 
         // Set color CSS and prevent negative values.
-        document.getElementById(loop_counter).style.backgroundColor = 
+        document.getElementById(loop_counter).style.backgroundColor =
           '#'
           + (new_colors[0] > 0
             ? new_colors[0]
@@ -124,7 +124,6 @@ function update_waves(){
 var color_generators = [0, 0, 0, 0, 0, 0];
 var pause_state = false;
 var timer = 0;
-
 
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
