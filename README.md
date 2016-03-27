@@ -1,5 +1,5 @@
-ColorWaves.htm
---------------
+iterami/ColorWaves.htm
+----------------------
 
 Perpetual liquid-esque color mixer.
 
