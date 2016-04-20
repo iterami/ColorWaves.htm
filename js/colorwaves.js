@@ -2,7 +2,10 @@
 
 function recreate_waves(){
     // Generate and display wave HTML.
-    var wave_count = parseInt(document.getElementById('wave-count').value) - 1;
+    var wave_count = parseInt(
+      document.getElementById('wave-count').value,
+      10
+    ) - 1;
     var loop_counter = wave_count;
     var wave_html = '';
     do{
@@ -39,14 +42,20 @@ function pause(new_pause_state){
     if(!pause_state){
         timer = window.setInterval(
           update_waves,
-          parseInt(document.getElementById('wave-move-interval').value)
+          parseInt(
+            document.getElementById('wave-move-interval').value,
+            10
+          )
         );
     }
 }
 
 function randomize(){
     // Set random wave RGB colors, directions, and positions.
-    var wave_count = parseInt(document.getElementById('wave-count').value);
+    var wave_count = parseInt(
+      document.getElementById('wave-count').value,
+      10
+    );
     color_generators = [
       Math.floor(Math.random() * wave_count),// R position
       [1, -1][Math.floor(Math.random() * 2)],// R direction
@@ -81,7 +90,10 @@ function reset(){
 function update_waves(){
     // Move RGB color generators and change direction on collision with edge.
     var loop_counter = 2;
-    var wave_count = parseInt(document.getElementById('wave-count').value) - 1;
+    var wave_count = parseInt(
+      document.getElementById('wave-count').value,
+      10
+    ) - 1;
     do{
         color_generators[loop_counter * 2] += color_generators[loop_counter * 2 + 1];
         if(color_generators[loop_counter * 2] > wave_count){
