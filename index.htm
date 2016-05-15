@@ -3,16 +3,9 @@
 <title>ColorWaves.htm</title>
 <link href=css/colorwaves.css rel=stylesheet>
 
-<input onclick=pause(!pause_state) type=button value=Un/[P]ause>
-<input onclick=randomize() type=button value=[R]andomize>
-<select id=orientation>
-  <option value=0>Horizontal</option>
-  <option selected value=1>Vertical</option>
-</select>
-<input id=wave-count value=10>
-<input id=wave-move-interval value=100>
-<input onclick=reset() type=button value=Reset>
+<span id=settings></span>
 <br>
 <span id=waves></span>
 
+<script src=../common/js/settings.js></script>
 <script src=js/colorwaves.js></script>

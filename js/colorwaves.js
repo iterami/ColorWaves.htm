@@ -1,12 +1,10 @@
 'use strict';
 
 function recreate_waves(){
+    save();
+
     // Generate and display wave HTML.
-    var wave_count = parseInt(
-      document.getElementById('wave-count').value,
-      10
-    ) - 1;
-    var loop_counter = wave_count;
+    var loop_counter = settings['wave-count'] - 1;
     var wave_html = '';
     do{
         wave_html += '<div id=' + loop_counter + '></div>';
@@ -18,12 +16,12 @@ function recreate_waves(){
     var height = '420px';
     var width = '42px';
     // ...or horizontal, if selected.
-    if(document.getElementById('orientation').value == 0){
+    if(settings['orientation'] == 0){
         display = 'block';
         height = '42px';
         width = '100%';
     }
-    loop_counter = wave_count;
+    loop_counter = settings['wave-count'] - 1;
     do{
         document.getElementById(loop_counter).style.display = display;
         document.getElementById(loop_counter).style.height = height;
@@ -42,61 +40,31 @@ function pause(new_pause_state){
     if(!pause_state){
         timer = window.setInterval(
           update_waves,
-          parseInt(
-            document.getElementById('wave-move-interval').value,
-            10
-          )
+          settings['wave-move-interval']
         );
     }
 }
 
 function randomize(){
     // Set random wave RGB colors, directions, and positions.
-    var wave_count = parseInt(
-      document.getElementById('wave-count').value,
-      10
-    );
     color_generators = [
-      Math.floor(Math.random() * wave_count),// R position
+      Math.floor(Math.random() * settings['wave-count']),// R position
       [1, -1][Math.floor(Math.random() * 2)],// R direction
-      Math.floor(Math.random() * wave_count),// G position
+      Math.floor(Math.random() * settings['wave-count']),// G position
       [1, -1][Math.floor(Math.random() * 2)],// G direction
-      Math.floor(Math.random() * wave_count),// B position
+      Math.floor(Math.random() * settings['wave-count']),// B position
       [1, -1][Math.floor(Math.random() * 2)] // B direction
     ];
 
     update_waves();
 }
 
-function reset(){
-    if(!window.confirm('Reset settings?')){
-        return;
-    }
-
-    var ids = {
-      'orientation': 1,
-      'wave-count': 10,
-      'wave-move-interval': 100,
-    };
-    for(var id in ids){
-        document.getElementById(id).value = ids[id];
-    }
-
-    randomize();
-    recreate_waves();
-    pause(false);
-}
-
 function update_waves(){
     // Move RGB color generators and change direction on collision with edge.
     var loop_counter = 2;
-    var wave_count = parseInt(
-      document.getElementById('wave-count').value,
-      10
-    ) - 1;
     do{
         color_generators[loop_counter * 2] += color_generators[loop_counter * 2 + 1];
-        if(color_generators[loop_counter * 2] > wave_count){
+        if(color_generators[loop_counter * 2] > settings['wave-count'] - 1){
             color_generators[loop_counter * 2 + 1] = -1;
 
         }else if(color_generators[loop_counter * 2] < 1){
@@ -105,7 +73,7 @@ function update_waves(){
     }while(loop_counter--);
 
     // Update wave colors colors.
-    loop_counter = wave_count;
+    loop_counter = settings['wave-count'] - 1;
     var new_colors = [];
     do{
         // Color is based on distance from generator.
@@ -151,7 +119,27 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(){
+    init_settings(
+      'ColorWaves.htm-',
+      {
+        'orientation': 1,
+        'wave-count': 10,
+        'wave-move-interval': 100,
+      }
+    );
+
+    document.getElementById('settings').innerHTML =
+      '<input onclick=pause(!pause_state) type=button value=Un/[P]ause>'
+        + '<input onclick=randomize() type=button value=[R]andomize>'
+        + '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>'
+        + '<input id=wave-count value=' + settings['wave-count'] + '>'
+        + '<input id=wave-move-interval value=' + settings['wave-move-interval'] + '>'
+        + '<input onclick=reset();recreate_waves();pause(pause_state) type=button value=Reset>';
+    document.getElementById('orientation').onchange = recreate_waves;
+    document.getElementById('orientation').value = settings['orientation'];
+    document.getElementById('wave-count').oninput = recreate_waves;
     document.getElementById('wave-move-interval').oninput = function(e){
+        save();
         pause(pause_state);
     };
 
@@ -159,7 +147,4 @@ window.onload = function(){
     randomize();
 
     pause(false);
-
-    document.getElementById('orientation').onchange = recreate_waves;
-    document.getElementById('wave-count').oninput = recreate_waves;
 };
