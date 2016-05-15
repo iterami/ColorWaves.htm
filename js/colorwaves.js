@@ -132,11 +132,12 @@ window.onload = function(){
       '<input onclick=pause(!pause_state) type=button value=Un/[P]ause>'
         + '<input onclick=randomize() type=button value=[R]andomize>'
         + '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>'
-        + '<input id=wave-count value=' + settings['wave-count'] + '>'
-        + '<input id=wave-move-interval value=' + settings['wave-move-interval'] + '>'
+        + '<input id=wave-count>'
+        + '<input id=wave-move-interval>'
         + '<input onclick=reset();recreate_waves();pause(pause_state) type=button value=Reset>';
+    update_settings();
+
     document.getElementById('orientation').onchange = recreate_waves;
-    document.getElementById('orientation').value = settings['orientation'];
     document.getElementById('wave-count').oninput = recreate_waves;
     document.getElementById('wave-move-interval').oninput = function(e){
         save();
