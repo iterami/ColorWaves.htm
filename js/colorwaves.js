@@ -48,12 +48,12 @@ function pause(new_pause_state){
 function randomize(){
     // Set random wave RGB colors, directions, and positions.
     color_generators = [
-      Math.floor(Math.random() * settings_settings['wave-count']),// R position
-      [1, -1][Math.floor(Math.random() * 2)],// R direction
-      Math.floor(Math.random() * settings_settings['wave-count']),// G position
-      [1, -1][Math.floor(Math.random() * 2)],// G direction
-      Math.floor(Math.random() * settings_settings['wave-count']),// B position
-      [1, -1][Math.floor(Math.random() * 2)] // B direction
+      random_integer(settings_settings['wave-count']),// R position
+      [1, -1][random_integer(2)],// R direction
+      random_integer(settings_settings['wave-count']),// G position
+      [1, -1][random_integer(2)],// G direction
+      random_integer(settings_settings['wave-count']),// B position
+      [1, -1][random_integer(2)] // B direction
     ];
 
     update_waves();
