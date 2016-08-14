@@ -108,20 +108,19 @@ var timer = 0;
 var wave_directions = [0, 0, 0];
 var wave_positions = [0, 0, 0];
 
-window.onkeydown = function(e){
-    var key = e.keyCode || e.which;
-
-    // R: randomize wave color positions.
-    if(key === 82){
-        randomize();
-
-    // P: pause or unpause.
-    }else if(key === 80){
-        pause(!pause_state);
-    }
-};
-
 window.onload = function(){
+    input_init(
+      {
+        80: {
+          'todo': function(){
+              pause(!pause_state);
+          },
+        },
+        82: {
+          'todo': randomize,
+        },
+      }
+    );
     settings_init(
       'ColorWaves.htm-',
       {
