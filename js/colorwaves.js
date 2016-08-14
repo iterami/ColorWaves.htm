@@ -48,14 +48,14 @@ function pause(new_pause_state){
 function randomize(){
     // Set random wave directions and positions.
     wave_directions = [
-      [1, -1][random_integer(2)],// R direction
-      [1, -1][random_integer(2)],// G direction
-      [1, -1][random_integer(2)] // B direction
+      [1, -1][random_integer(2)],// R
+      [1, -1][random_integer(2)],// G
+      [1, -1][random_integer(2)] // B
     ];
-    waves_positions = [
-      random_integer(settings_settings['wave-count']),// R position
-      random_integer(settings_settings['wave-count']),// G position
-      random_integer(settings_settings['wave-count']),// B position
+    wave_positions = [
+      random_integer(settings_settings['wave-count']),// R
+      random_integer(settings_settings['wave-count']),// G
+      random_integer(settings_settings['wave-count']),// B
     ];
 
     update_waves();
