@@ -46,14 +46,16 @@ function pause(new_pause_state){
 }
 
 function randomize(){
-    // Set random wave RGB colors, directions, and positions.
-    color_generators = [
-      random_integer(settings_settings['wave-count']),// R position
+    // Set random wave directions and positions.
+    wave_directions = [
       [1, -1][random_integer(2)],// R direction
-      random_integer(settings_settings['wave-count']),// G position
       [1, -1][random_integer(2)],// G direction
-      random_integer(settings_settings['wave-count']),// B position
       [1, -1][random_integer(2)] // B direction
+    ];
+    waves_positions = [
+      random_integer(settings_settings['wave-count']),// R position
+      random_integer(settings_settings['wave-count']),// G position
+      random_integer(settings_settings['wave-count']),// B position
     ];
 
     update_waves();
@@ -63,12 +65,12 @@ function update_waves(){
     // Move RGB color generators and change direction on collision with edge.
     var loop_counter = 2;
     do{
-        color_generators[loop_counter * 2] += color_generators[loop_counter * 2 + 1];
-        if(color_generators[loop_counter * 2] > settings_settings['wave-count'] - 1){
-            color_generators[loop_counter * 2 + 1] = -1;
+        wave_positions[loop_counter] += wave_directions[loop_counter];
+        if(wave_positions[loop_counter] > settings_settings['wave-count'] - 1){
+            wave_directions[loop_counter] = -1;
 
-        }else if(color_generators[loop_counter * 2] < 1){
-            color_generators[loop_counter * 2 + 1] = 1;
+        }else if(wave_positions[loop_counter] < 1){
+            wave_directions[loop_counter] = 1;
         }
     }while(loop_counter--);
 
@@ -78,9 +80,9 @@ function update_waves(){
     do{
         // Color is based on distance from generator.
         new_colors = [
-          9 - Math.abs(loop_counter - color_generators[0]),
-          9 - Math.abs(loop_counter - color_generators[2]),
-          9 - Math.abs(loop_counter - color_generators[4]),
+          9 - Math.abs(loop_counter - wave_positions[0]),
+          9 - Math.abs(loop_counter - wave_positions[1]),
+          9 - Math.abs(loop_counter - wave_positions[2]),
         ];
 
         // Set color CSS and prevent negative values.
@@ -101,9 +103,10 @@ function update_waves(){
     }while(loop_counter--);
 }
 
-var color_generators = [0, 0, 0, 0, 0, 0];
 var pause_state = false;
 var timer = 0;
+var wave_directions = [0, 0, 0];
+var wave_positions = [0, 0, 0];
 
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
