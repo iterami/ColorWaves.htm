@@ -142,7 +142,7 @@ window.onload = function(){
     document.getElementById('orientation').onchange = recreate_waves;
     document.getElementById('wave-count').oninput = recreate_waves;
     document.getElementById('wave-move-interval').oninput = function(e){
-        save();
+        settings_save();
         pause(pause_state);
     };
 
