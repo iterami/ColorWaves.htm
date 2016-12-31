@@ -121,14 +121,14 @@ window.onload = function(){
         },
       }
     );
-    settings_init(
-      'ColorWaves.htm-',
-      {
+    settings_init({
+      'prefix': 'ColorWaves.htm-',
+      'settings': {
         'orientation': 1,
         'wave-count': 10,
         'wave-move-interval': 100,
-      }
-    );
+      },
+    });
 
     document.getElementById('settings').innerHTML =
       '<input onclick=pause(!pause_state) type=button value=Un/[P]ause>'
