@@ -121,8 +121,8 @@ var wave_directions = [0, 0, 0];
 var wave_positions = [0, 0, 0];
 
 window.onload = function(){
-    input_init(
-      {
+    input_init({
+      'keybinds': {
         80: {
           'todo': function(){
               pause(!pause_state);
@@ -131,8 +131,8 @@ window.onload = function(){
         82: {
           'todo': randomize,
         },
-      }
-    );
+      },
+    });
     settings_init({
       'prefix': 'ColorWaves.htm-',
       'settings': {
