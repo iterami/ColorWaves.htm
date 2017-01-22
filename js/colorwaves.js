@@ -1,10 +1,10 @@
 'use strict';
 
 function recreate_waves(){
-    settings_save();
+    storage_save();
 
     // Generate and display wave HTML.
-    var loop_counter = settings_settings['wave-count'] - 1;
+    var loop_counter = storage_data['wave-count'] - 1;
     var wave_html = '';
     do{
         wave_html += '<div id=' + loop_counter + '></div>';
@@ -16,12 +16,12 @@ function recreate_waves(){
     var height = '420px';
     var width = '42px';
     // ...or horizontal, if selected.
-    if(settings_settings['orientation'] == 0){
+    if(storage_data['orientation'] == 0){
         display = 'block';
         height = '42px';
         width = '100%';
     }
-    loop_counter = settings_settings['wave-count'] - 1;
+    loop_counter = storage_data['wave-count'] - 1;
     do{
         document.getElementById(loop_counter).style.display = display;
         document.getElementById(loop_counter).style.height = height;
@@ -40,7 +40,7 @@ function pause(new_pause_state){
     if(!pause_state){
         timer = window.setInterval(
           update_waves,
-          settings_settings['wave-move-interval']
+          storage_data['wave-move-interval']
         );
     }
 }
@@ -60,13 +60,13 @@ function randomize(){
     ];
     wave_positions = [
       random_integer({
-        'max': settings_settings['wave-count'],
+        'max': storage_data['wave-count'],
       }),
       random_integer({
-        'max': settings_settings['wave-count'],
+        'max': storage_data['wave-count'],
       }),
       random_integer({
-        'max': settings_settings['wave-count'],
+        'max': storage_data['wave-count'],
       }),
     ];
 
@@ -78,7 +78,7 @@ function update_waves(){
     var loop_counter = 2;
     do{
         wave_positions[loop_counter] += wave_directions[loop_counter];
-        if(wave_positions[loop_counter] > settings_settings['wave-count'] - 1){
+        if(wave_positions[loop_counter] > storage_data['wave-count'] - 1){
             wave_directions[loop_counter] = -1;
 
         }else if(wave_positions[loop_counter] < 1){
@@ -87,7 +87,7 @@ function update_waves(){
     }while(loop_counter--);
 
     // Update wave colors colors.
-    loop_counter = settings_settings['wave-count'] - 1;
+    loop_counter = storage_data['wave-count'] - 1;
     var new_colors = [];
     do{
         // Color is based on distance from generator.
@@ -133,13 +133,13 @@ window.onload = function(){
         },
       },
     });
-    settings_init({
-      'prefix': 'ColorWaves.htm-',
-      'settings': {
+    storage_init({
+      'data': {
         'orientation': 1,
         'wave-count': 10,
         'wave-move-interval': 100,
       },
+      'prefix': 'ColorWaves.htm-',
     });
 
     document.getElementById('settings').innerHTML =
@@ -148,13 +148,13 @@ window.onload = function(){
         + '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>'
         + '<input id=wave-count>'
         + '<input id=wave-move-interval>'
-        + '<input onclick=settings_reset();recreate_waves();pause(pause_state) type=button value=Reset>';
-    settings_update();
+        + '<input onclick=storage_reset();recreate_waves();pause(pause_state) type=button value=Reset>';
+    storage_update();
 
     document.getElementById('orientation').onchange = recreate_waves;
     document.getElementById('wave-count').oninput = recreate_waves;
     document.getElementById('wave-move-interval').oninput = function(e){
-        settings_save();
+        storage_save();
         pause(pause_state);
     };
 
