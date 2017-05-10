@@ -48,24 +48,24 @@ function pause(new_pause_state){
 function randomize(){
     // Set random wave directions and positions.
     wave_directions = [
-      random_boolean()
+      core_random_boolean()
         ? 1
         : -1,
-      random_boolean()
+      core_random_boolean()
         ? 1
         : -1,
-      random_boolean()
+      core_random_boolean()
         ? 1
         : -1,
     ];
     wave_positions = [
-      random_integer({
+      core_random_integer({
         'max': storage_data['wave-count'],
       }),
-      random_integer({
+      core_random_integer({
         'max': storage_data['wave-count'],
       }),
-      random_integer({
+      core_random_integer({
         'max': storage_data['wave-count'],
       }),
     ];
