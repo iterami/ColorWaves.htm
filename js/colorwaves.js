@@ -121,7 +121,7 @@ var wave_directions = [0, 0, 0];
 var wave_positions = [0, 0, 0];
 
 window.onload = function(){
-    input_init({
+    core_input_init({
       'keybinds': {
         80: {
           'todo': function(){
