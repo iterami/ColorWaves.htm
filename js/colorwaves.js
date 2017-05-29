@@ -73,6 +73,50 @@ function randomize(){
     update_waves();
 }
 
+function repo_init(){
+    core_input_binds_add({
+      'keybinds': {
+        80: {
+          'todo': function(){
+              pause(!pause_state);
+          },
+        },
+        82: {
+          'todo': randomize,
+        },
+      },
+    });
+    core_storage_init({
+      'data': {
+        'orientation': 1,
+        'wave-count': 10,
+        'wave-move-interval': 100,
+      },
+      'prefix': 'ColorWaves.htm-',
+    });
+
+    document.getElementById('settings').innerHTML =
+      '<input onclick=pause(!pause_state) type=button value=Un/[P]ause>'
+        + '<input onclick=randomize() type=button value=[R]andomize>'
+        + '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>'
+        + '<input id=wave-count>'
+        + '<input id=wave-move-interval>'
+        + '<input onclick=core_storage_reset();recreate_waves();pause(pause_state) type=button value=Reset>';
+    core_storage_update();
+
+    document.getElementById('orientation').onchange = recreate_waves;
+    document.getElementById('wave-count').oninput = recreate_waves;
+    document.getElementById('wave-move-interval').oninput = function(e){
+        core_storage_save();
+        pause(pause_state);
+    };
+
+    recreate_waves();
+    randomize();
+
+    pause(false);
+}
+
 function update_waves(){
     // Move RGB color generators and change direction on collision with edge.
     var loop_counter = 2;
@@ -119,47 +163,3 @@ var pause_state = false;
 var timer = 0;
 var wave_directions = [0, 0, 0];
 var wave_positions = [0, 0, 0];
-
-window.onload = function(){
-    core_input_init({
-      'keybinds': {
-        80: {
-          'todo': function(){
-              pause(!pause_state);
-          },
-        },
-        82: {
-          'todo': randomize,
-        },
-      },
-    });
-    core_storage_init({
-      'data': {
-        'orientation': 1,
-        'wave-count': 10,
-        'wave-move-interval': 100,
-      },
-      'prefix': 'ColorWaves.htm-',
-    });
-
-    document.getElementById('settings').innerHTML =
-      '<input onclick=pause(!pause_state) type=button value=Un/[P]ause>'
-        + '<input onclick=randomize() type=button value=[R]andomize>'
-        + '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>'
-        + '<input id=wave-count>'
-        + '<input id=wave-move-interval>'
-        + '<input onclick=core_storage_reset();recreate_waves();pause(pause_state) type=button value=Reset>';
-    core_storage_update();
-
-    document.getElementById('orientation').onchange = recreate_waves;
-    document.getElementById('wave-count').oninput = recreate_waves;
-    document.getElementById('wave-move-interval').oninput = function(e){
-        core_storage_save();
-        pause(pause_state);
-    };
-
-    recreate_waves();
-    randomize();
-
-    pause(false);
-};
