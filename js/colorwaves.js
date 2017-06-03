@@ -74,7 +74,15 @@ function randomize(){
 }
 
 function repo_init(){
-    core_input_binds_add({
+    core_storage_init({
+      'data': {
+        'orientation': 1,
+        'wave-count': 10,
+        'wave-move-interval': 100,
+      },
+      'prefix': 'ColorWaves.htm-',
+    });
+    core_events_bind({
       'keybinds': {
         80: {
           'todo': function(){
@@ -85,14 +93,6 @@ function repo_init(){
           'todo': randomize,
         },
       },
-    });
-    core_storage_init({
-      'data': {
-        'orientation': 1,
-        'wave-count': 10,
-        'wave-move-interval': 100,
-      },
-      'prefix': 'ColorWaves.htm-',
     });
 
     document.getElementById('settings').innerHTML =
