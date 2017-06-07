@@ -74,13 +74,13 @@ function randomize(){
 }
 
 function repo_init(){
-    core_storage_init({
-      'data': {
+    core_repo_init({
+      'storage': {
         'orientation': 1,
         'wave-count': 10,
         'wave-move-interval': 100,
       },
-      'prefix': 'ColorWaves.htm-',
+      'title': 'ColorWaves.htm',
     });
     core_events_bind({
       'keybinds': {
