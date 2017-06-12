@@ -90,17 +90,11 @@ function repo_init(){
         'wave-count': 10,
         'wave-move-interval': 100,
       },
+      'storage-menu': '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>Orientation<br><input id=wave-count>Wave Count<br><input id=wave-move-interval>Wave Move Interval',
       'title': 'ColorWaves.htm',
     });
 
-    document.getElementById('settings').innerHTML =
-      '<input onclick=pause(!pause_state) type=button value=Un/[P]ause>'
-        + '<input onclick=randomize() type=button value=[R]andomize>'
-        + '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>'
-        + '<input id=wave-count>'
-        + '<input id=wave-move-interval>'
-        + '<input onclick=core_storage_reset();recreate_waves();pause(pause_state) type=button value=Reset>';
-    core_storage_update();
+    document.getElementById('controls').innerHTML = '<input onclick=pause(!pause_state) type=button value=Un/[P]ause><input onclick=randomize() type=button value=[R]andomize>';
 
     document.getElementById('orientation').onchange = recreate_waves;
     document.getElementById('wave-count').oninput = recreate_waves;
