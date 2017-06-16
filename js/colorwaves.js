@@ -40,7 +40,7 @@ function pause(new_pause_state){
     if(!pause_state){
         timer = window.setInterval(
           update_waves,
-          core_storage_data['wave-move-interval']
+          core_storage_data['frame-ms']
         );
     }
 }
@@ -87,10 +87,9 @@ function repo_init(){
       },
       'storage': {
         'orientation': 1,
-        'wave-count': 10,
-        'wave-move-interval': 100,
+        'wave-count': 20,
       },
-      'storage-menu': '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>Orientation<br><input id=wave-count>Wave Count<br><input id=wave-move-interval>Wave Move Interval',
+      'storage-menu': '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>Orientation<br><input id=wave-count>Wave Count',
       'title': 'ColorWaves.htm',
     });
 
@@ -98,10 +97,6 @@ function repo_init(){
 
     document.getElementById('orientation').onchange = recreate_waves;
     document.getElementById('wave-count').oninput = recreate_waves;
-    document.getElementById('wave-move-interval').oninput = function(e){
-        core_storage_save();
-        pause(pause_state);
-    };
 
     recreate_waves();
     randomize();
