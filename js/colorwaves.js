@@ -89,7 +89,7 @@ function repo_init(){
         'orientation': 1,
         'wave-count': 20,
       },
-      'storage-menu': '<select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select>Orientation<br><input id=wave-count>Wave Count',
+      'storage-menu': '<table><tr><td><select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select><td>Orientation<tr><td><input id=wave-count><td>Wave Count</table>',
       'title': 'ColorWaves.htm',
     });
 
