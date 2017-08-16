@@ -32,19 +32,6 @@ function recreate_waves(){
     update_waves();
 }
 
-function pause(new_pause_state){
-    window.clearInterval(timer);
-
-    pause_state = new_pause_state;
-    // If unpaused, update waves periodically.
-    if(!pause_state){
-        timer = window.setInterval(
-          update_waves,
-          core_storage_data['frame-ms']
-        );
-    }
-}
-
 function randomize(){
     // Set random wave directions and positions.
     wave_directions = [
@@ -75,16 +62,7 @@ function randomize(){
 
 function repo_init(){
     core_repo_init({
-      'keybinds': {
-        80: {
-          'todo': function(){
-              pause(!pause_state);
-          },
-        },
-        82: {
-          'todo': randomize,
-        },
-      },
+      'info': '<input id=randomize type=button value=Randomize>',
       'storage': {
         'orientation': 1,
         'wave-count': 20,
@@ -93,18 +71,27 @@ function repo_init(){
       'title': 'ColorWaves.htm',
     });
 
-    document.getElementById('controls').innerHTML = '<input onclick=pause(!pause_state) type=button value=Un/[P]ause><input onclick=randomize() type=button value=[R]andomize>';
-
-    document.getElementById('orientation').onchange = recreate_waves;
-    document.getElementById('wave-count').oninput = recreate_waves;
-
     recreate_waves();
     randomize();
 
-    pause(false);
+    document.getElementById('randomize').onclick = function(){
+        randomize();
+        core_escape();
+    };
+    document.getElementById('orientation').onchange = recreate_waves;
+    document.getElementById('wave-count').oninput = recreate_waves;
+
+    window.setInterval(
+      update_waves,
+      core_storage_data['frame-ms']
+    );
 }
 
 function update_waves(){
+    if(core_menu_open){
+        return;
+    }
+
     // Move RGB color generators and change direction on collision with edge.
     var loop_counter = 2;
     do{
@@ -146,7 +133,5 @@ function update_waves(){
     }while(loop_counter--);
 }
 
-var pause_state = false;
-var timer = 0;
 var wave_directions = [0, 0, 0];
 var wave_positions = [0, 0, 0];
