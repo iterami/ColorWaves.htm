@@ -60,6 +60,12 @@ function randomize(){
     update_waves();
 }
 
+function repo_escape(){
+    if(!core_menu_open){
+        recreate_waves();
+    }
+}
+
 function repo_init(){
     core_repo_init({
       'info': '<input id=randomize type=button value=Randomize>',
@@ -78,8 +84,6 @@ function repo_init(){
         randomize();
         core_escape();
     };
-    document.getElementById('orientation').onchange = recreate_waves;
-    document.getElementById('wave-count').oninput = recreate_waves;
 
     window.setInterval(
       update_waves,
