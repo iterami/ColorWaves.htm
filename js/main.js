@@ -3,6 +3,14 @@
 function repo_init(){
     core_repo_init({
       'info': '<input id=randomize type=button value=Randomize>',
+      'info-events': {
+        'randomize': {
+          'todo': function(){
+              randomize();
+              core_escape();
+          },
+        },
+      },
       'storage': {
         'orientation': 1,
         'wave-count': 20,
@@ -13,11 +21,6 @@ function repo_init(){
 
     recreate_waves();
     randomize();
-
-    document.getElementById('randomize').onclick = function(){
-        randomize();
-        core_escape();
-    };
 
     window.setInterval(
       update_waves,
