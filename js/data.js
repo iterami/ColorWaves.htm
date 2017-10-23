@@ -105,6 +105,3 @@ function update_waves(){
           );
     }while(loop_counter--);
 }
-
-var wave_directions = [0, 0, 0];
-var wave_positions = [0, 0, 0];

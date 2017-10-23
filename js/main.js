@@ -2,6 +2,10 @@
 
 function repo_init(){
     core_repo_init({
+      'globals': {
+        'wave_directions': [0, 0, 0],
+        'wave_positions': [0, 0, 0],
+      },
       'info': '<input id=randomize type=button value=Randomize>',
       'info-events': {
         'randomize': {
