@@ -26,8 +26,7 @@ function repo_init(){
     recreate_waves();
     randomize();
 
-    window.setInterval(
-      update_waves,
-      core_storage_data['frame-ms']
-    );
+    core_interval_modify({
+      'todo': update_waves,
+    });
 }
