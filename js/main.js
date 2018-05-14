@@ -9,12 +9,18 @@ function repo_init(){
               randomize();
           },
         },
+        'recreate': {
+          'onclick': function(){
+              core_escape();
+              recreate_waves();
+          },
+        },
       },
       'globals': {
         'wave_directions': [0, 0, 0],
         'wave_positions': [0, 0, 0],
       },
-      'info': '<input id=randomize type=button value=Randomize>',
+      'info': '<input id=randomize type=button value=Randomize><input id=recreate type=button value=Recreate>',
       'storage': {
         'interval': 100,
         'orientation': 1,
