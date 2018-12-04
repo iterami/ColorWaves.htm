@@ -13,13 +13,13 @@ function recreate_waves(){
 
     // Set orientation CSS to vertical by default...
     let display = 'inline-block';
-    let height = '420px';
-    let width = '42px';
+    let height = core_storage_data['vertical-height'];
+    let width = core_storage_data['vertical-width'];
     // ...or horizontal, if selected.
     if(core_storage_data['orientation'] == 0){
         display = 'block';
-        height = '42px';
-        width = '100%';
+        height = core_storage_data['horizontal-height'];
+        width = core_storage_data['horizontal-width'];
     }
     loop_counter = core_storage_data['wave-count'] - 1;
     do{
@@ -28,8 +28,7 @@ function recreate_waves(){
         document.getElementById(loop_counter).style.width = width;
     }while(loop_counter--);
 
-    // Update waves.
-    update_waves();
+    randomize();
 }
 
 function randomize(){
