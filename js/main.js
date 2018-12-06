@@ -30,7 +30,13 @@ function repo_init(){
         'vertical-width': '42px',
         'wave-count': 20,
       },
-      'storage-menu': '<table><tr><td><input id=horizontal-height><td>Horizontal Height<tr><td><input id=horizontal-width><td>Horizontal Width<tr><td><input id=interval><td>Interval<tr><td><select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select><td>Orientation<tr><td><input id=vertical-height><td>Vertical Height<tr><td><input id=vertical-width><td>Vertical Width<tr><td><input id=wave-count><td>Wave Count</table>',
+      'storage-menu': '<table><tr><td><input id=horizontal-height><td>Horizontal Height'
+        + '<tr><td><input id=horizontal-width><td>Horizontal Width'
+        + '<tr><td><input id=interval><td>Interval'
+        + '<tr><td><select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select><td>Orientation'
+        + '<tr><td><input id=vertical-height><td>Vertical Height'
+        + '<tr><td><input id=vertical-width><td>Vertical Width'
+        + '<tr><td><input id=wave-count><td>Wave Count</table>',
       'title': 'ColorWaves.htm',
     });
 
