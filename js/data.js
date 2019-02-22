@@ -23,9 +23,11 @@ function recreate_waves(){
     }
     loop_counter = core_storage_data['wave-count'] - 1;
     do{
-        document.getElementById(loop_counter).style.display = display;
-        document.getElementById(loop_counter).style.height = height;
-        document.getElementById(loop_counter).style.width = width;
+        let element = document.getElementById(loop_counter);
+
+        element.style.display = display;
+        element.style.height = height;
+        element.style.width = width;
     }while(loop_counter--);
 
     randomize();
