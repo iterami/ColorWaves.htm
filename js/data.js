@@ -68,10 +68,6 @@ function randomize(){
 }
 
 function update_waves(){
-    if(core_menu_open){
-        return;
-    }
-
     // Move RGB color generators and change direction on collision with edge.
     let loop_counter = 2;
     do{
