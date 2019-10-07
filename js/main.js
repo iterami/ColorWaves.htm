@@ -4,10 +4,7 @@ function repo_init(){
     core_repo_init({
       'events': {
         'randomize': {
-          'onclick': function(){
-              core_escape();
-              randomize();
-          },
+          'onclick': core_repo_reset,
         },
         'recreate': {
           'onclick': function(){
@@ -21,6 +18,12 @@ function repo_init(){
         'wave_positions': [0, 0, 0],
       },
       'info': '<input id=randomize type=button value=Randomize><input id=recreate type=button value=Recreate>',
+      'reset': function(){
+          if(core_menu_open){
+              core_escape();
+          }
+          randomize();
+      },
       'storage': {
         'horizontal-height': '42px',
         'horizontal-width': '100%',
