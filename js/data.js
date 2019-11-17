@@ -16,7 +16,7 @@ function recreate_waves(){
     let height = core_storage_data['vertical-height'];
     let width = core_storage_data['vertical-width'];
     // ...or horizontal, if selected.
-    if(core_storage_data['orientation'] == 0){
+    if(core_storage_data['orientation'] === 0){
         display = 'block';
         height = core_storage_data['horizontal-height'];
         width = core_storage_data['horizontal-width'];
