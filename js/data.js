@@ -23,7 +23,7 @@ function recreate_waves(){
     }
     loop_counter = core_storage_data['wave-count'] - 1;
     do{
-        let element = document.getElementById(loop_counter);
+        const element = document.getElementById(loop_counter);
 
         element.style.display = display;
         element.style.height = height;
