@@ -25,6 +25,7 @@ function repo_init(){
           randomize();
       },
       'storage': {
+        'distance': 9,
         'horizontal-height': '42px',
         'horizontal-width': '100%',
         'interval': 100,
@@ -33,7 +34,8 @@ function repo_init(){
         'vertical-width': '42px',
         'wave-count': 20,
       },
-      'storage-menu': '<table><tr><td><input id=horizontal-height><td>Horizontal Height'
+      'storage-menu': '<table><tr><td><input id=distance><td>Distance 1-15'
+        + '<tr><td><input id=horizontal-height><td>Horizontal Height'
         + '<tr><td><input id=horizontal-width><td>Horizontal Width'
         + '<tr><td><input id=interval><td>Interval'
         + '<tr><td><select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select><td>Orientation'

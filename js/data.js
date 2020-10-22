@@ -80,31 +80,34 @@ function update_waves(){
         }
     }while(loop_counter--);
 
-    // Update wave colors colors.
+    let distance = Math.max(
+      Math.min(
+        core_storage_data['distance'],
+        15
+      ),
+      1
+    );
+
+    // Update wave colors.
     loop_counter = core_storage_data['wave-count'] - 1;
-    let new_colors = [];
     do{
         // Color is based on distance from generator.
-        new_colors = [
-          9 - Math.abs(loop_counter - wave_positions[0]),
-          9 - Math.abs(loop_counter - wave_positions[1]),
-          9 - Math.abs(loop_counter - wave_positions[2]),
+        let new_colors = [
+          Math.max(
+            distance - Math.abs(loop_counter - wave_positions[0]),
+            0
+          ).toString(16),
+          Math.max(
+            distance - Math.abs(loop_counter - wave_positions[1]),
+            0
+          ).toString(16),
+          Math.max(
+            distance - Math.abs(loop_counter - wave_positions[2]),
+            0
+          ).toString(16),
         ];
 
-        // Set color CSS and prevent negative values.
         document.getElementById(loop_counter).style.backgroundColor =
-          '#'
-          + (new_colors[0] > 0
-            ? new_colors[0]
-            : 0
-          )
-          + (new_colors[1] > 0
-            ? new_colors[1]
-            : 0
-          )
-          + (new_colors[2] > 0
-            ? new_colors[2]
-            : 0
-          );
+          '#' + new_colors[0] + new_colors[1] + new_colors[2];
     }while(loop_counter--);
 }
