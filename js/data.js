@@ -3,7 +3,6 @@
 function recreate_waves(){
     core_storage_save();
 
-    // Generate and display wave HTML.
     let loop_counter = core_storage_data['wave-count'] - 1;
     let wave_html = '';
     do{
@@ -11,11 +10,9 @@ function recreate_waves(){
     }while(loop_counter--);
     document.getElementById('waves').innerHTML = wave_html;
 
-    // Set orientation CSS to vertical by default...
     let display = 'inline-block';
     let height = core_storage_data['vertical-height'];
     let width = core_storage_data['vertical-width'];
-    // ...or horizontal, if selected.
     if(core_storage_data['orientation'] === 0){
         display = 'block';
         height = core_storage_data['horizontal-height'];
@@ -34,7 +31,6 @@ function recreate_waves(){
 }
 
 function randomize(){
-    // Set random wave directions and positions.
     wave_directions = [
       core_random_boolean()
         ? 1
@@ -68,7 +64,6 @@ function randomize(){
 }
 
 function update_waves(){
-    // Move RGB color generators and change direction on collision with edge.
     let loop_counter = 2;
     do{
         wave_positions[loop_counter] += wave_directions[loop_counter];
@@ -88,10 +83,8 @@ function update_waves(){
       1
     );
 
-    // Update wave colors.
     loop_counter = core_storage_data['wave-count'] - 1;
     do{
-        // Color is based on distance from generator.
         let new_colors = [
           Math.max(
             distance - Math.abs(loop_counter - wave_positions[0]),
