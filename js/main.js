@@ -34,14 +34,14 @@ function repo_init(){
         'vertical-width': '42px',
         'wave-count': 20,
       },
-      'storage-menu': '<table><tr><td><input id=distance max=15 min=1 type=number><td>Distance 1-15'
+      'storage-menu': '<table><tr><td><input id=distance max=15 min=1 step=any type=number><td>Distance 1-15'
         + '<tr><td><input id=horizontal-height><td>Horizontal Height'
         + '<tr><td><input id=horizontal-width><td>Horizontal Width'
-        + '<tr><td><input id=interval min=1 type=number><td>Interval'
+        + '<tr><td><input id=interval min=1 step=any type=number><td>Interval'
         + '<tr><td><select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select><td>Orientation'
         + '<tr><td><input id=vertical-height><td>Vertical Height'
         + '<tr><td><input id=vertical-width><td>Vertical Width'
-        + '<tr><td><input id=wave-count min=1 type=number><td>Wave Count</table>',
+        + '<tr><td><input id=wave-count min=1 step=any type=number><td>Wave Count</table>',
       'title': 'ColorWaves.htm',
     });
 
