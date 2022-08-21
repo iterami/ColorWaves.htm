@@ -1,8 +1,6 @@
 'use strict';
 
 function recreate_waves(){
-    core_storage_save();
-
     let loop_counter = core_storage_data['wave-count'] - 1;
     let wave_html = '';
     do{
