@@ -33,7 +33,7 @@ function randomize(){
     });
 }
 
-function recreate_waves(){
+function remake_waves(){
     let loop_counter = core_storage_data['wave-count'] - 1;
     let wave_html = '';
     do{
@@ -67,10 +67,10 @@ function repo_init(){
         'randomize': {
           'onclick': core_repo_reset,
         },
-        'recreate': {
+        'remake': {
           'onclick': function(){
               core_escape();
-              recreate_waves();
+              remake_waves();
           },
         },
       },
@@ -78,7 +78,7 @@ function repo_init(){
         'wave_directions': [0, 0, 0],
         'wave_positions': [0, 0, 0],
       },
-      'info': '<input id=randomize type=button value=Randomize><input id=recreate type=button value=Recreate>',
+      'info': '<input id=randomize type=button value=Randomize><input id=remake type=button value=Remake>',
       'reset': function(){
           if(core_menu_open){
               core_escape();
@@ -106,7 +106,7 @@ function repo_init(){
       'title': 'ColorWaves.htm',
     });
 
-    recreate_waves();
+    remake_waves();
     randomize();
 }
 
