@@ -99,7 +99,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=horizontal-height type=text><td>Horizontal Height'
         + '<tr><td><input class=mini id=horizontal-width type=text><td>Horizontal Width'
         + '<tr><td><input class=mini id=interval min=1 step=any type=number><td>Interval'
-        + '<tr><td><select id=orientation><option value=0>Horizontal</option><option value=1>Vertical</option></select><td>Orientation'
+        + '<tr><td><select id=orientation><option value=0>Horizontal<option value=1>Vertical</select><td>Orientation'
         + '<tr><td><input class=mini id=vertical-height type=text><td>Vertical Height'
         + '<tr><td><input class=mini id=vertical-width type=text><td>Vertical Width'
         + '<tr><td><input class=mini id=wave-count min=1 step=any type=number><td>Wave Count</table>',
