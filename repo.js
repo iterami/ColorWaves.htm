@@ -78,7 +78,7 @@ function repo_init(){
         'wave_directions': [0, 0, 0],
         'wave_positions': [0, 0, 0],
       },
-      'info': '<input id=randomize type=button value=Randomize><input id=remake type=button value=Remake>',
+      'info': '<button id=randomize type=button>Randomize</button><button id=remake type=button>Remake</button>',
       'reset': function(){
           if(core_menu_open){
               core_escape();
