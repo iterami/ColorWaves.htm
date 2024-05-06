@@ -51,11 +51,10 @@ function remake_waves(){
     }
     loop_counter = core_storage_data['wave-count'] - 1;
     do{
-        const element = document.getElementById(loop_counter);
-
-        element.style.display = display;
-        element.style.height = height;
-        element.style.width = width;
+        const style = document.getElementById(loop_counter).style;
+        style.display = display;
+        style.height = height;
+        style.width = width;
     }while(loop_counter--);
 
     randomize();
