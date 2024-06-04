@@ -121,7 +121,7 @@ function update_waves(){
         }
     }while(loop_counter--);
 
-    let distance = Math.max(
+    const distance = Math.max(
       Math.min(
         core_storage_data['distance'],
         15
@@ -131,7 +131,7 @@ function update_waves(){
 
     loop_counter = core_storage_data['wave-count'] - 1;
     do{
-        let new_colors = [
+        const new_colors = [
           Math.max(
             distance - Math.abs(loop_counter - wave_positions[0]),
             0
