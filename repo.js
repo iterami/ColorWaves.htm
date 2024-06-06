@@ -39,7 +39,7 @@ function remake_waves(){
     do{
         wave_html += '<div id=' + loop_counter + '></div>';
     }while(loop_counter--);
-    document.getElementById('waves').innerHTML = wave_html;
+    core_elements['waves'].innerHTML = wave_html;
 
     let display = 'inline-block';
     let height = core_storage_data['vertical-height'];
@@ -49,9 +49,16 @@ function remake_waves(){
         height = core_storage_data['horizontal-height'];
         width = core_storage_data['horizontal-width'];
     }
+
+    for(const element in core_elements){
+        if(!globalThis.isNaN(element)){
+            delete core_elements[element];
+        }
+    }
     loop_counter = core_storage_data['wave-count'] - 1;
     do{
-        const style = document.getElementById(loop_counter).style;
+        core_elements[loop_counter] = document.getElementById(loop_counter);
+        const style = core_elements[loop_counter].style;
         style.display = display;
         style.height = height;
         style.width = width;
@@ -103,6 +110,9 @@ function repo_init(){
         + '<tr><td><input class=mini id=vertical-width type=text><td>Vertical Width'
         + '<tr><td><input class=mini id=wave-count min=1 step=any type=number><td>Wave Count</table>',
       'title': 'ColorWaves.htm',
+      'ui-elements': [
+        'waves',
+      ],
     });
 
     remake_waves();
@@ -146,7 +156,7 @@ function update_waves(){
           ).toString(16),
         ];
 
-        document.getElementById(loop_counter).style.backgroundColor =
+        core_elements[loop_counter].style.backgroundColor =
           '#' + new_colors[0] + new_colors[1] + new_colors[2];
     }while(loop_counter--);
 }
