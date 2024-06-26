@@ -34,7 +34,7 @@ function randomize(){
 }
 
 function remake_waves(){
-    let loop_counter = core_storage_data['wave-count'] - 1;
+    let loop_counter = Math.floor(core_storage_data['wave-count']) - 1;
     let wave_html = '';
     do{
         wave_html += '<div id=' + loop_counter + '></div>';
@@ -55,7 +55,7 @@ function remake_waves(){
             delete core_elements[element];
         }
     }
-    loop_counter = core_storage_data['wave-count'] - 1;
+    loop_counter = Math.floor(core_storage_data['wave-count']) - 1;
     do{
         core_elements[loop_counter] = document.getElementById(loop_counter);
         const style = core_elements[loop_counter].style;
@@ -108,7 +108,7 @@ function repo_init(){
         + '<tr><td><select id=orientation><option value=0>Horizontal<option value=1>Vertical</select><td>Orientation'
         + '<tr><td><input class=mini id=vertical-height type=text><td>Vertical Height'
         + '<tr><td><input class=mini id=vertical-width type=text><td>Vertical Width'
-        + '<tr><td><input class=mini id=wave-count min=1 step=any type=number><td>Wave Count</table>',
+        + '<tr><td><input class=mini id=wave-count min=1 step=1 type=number><td>Wave Count</table>',
       'title': 'ColorWaves.htm',
       'ui-elements': [
         'waves',
@@ -139,7 +139,7 @@ function update_waves(){
       1
     );
 
-    loop_counter = core_storage_data['wave-count'] - 1;
+    loop_counter = Math.floor(core_storage_data['wave-count']) - 1;
     do{
         const new_colors = [
           Math.max(
