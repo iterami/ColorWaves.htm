@@ -40,6 +40,9 @@ function remake_waves(){
         wave_html += '<div id=' + loop_counter + '></div>';
     }while(loop_counter--);
     core_elements['waves'].innerHTML = wave_html;
+    core_elements['waves'].style.whiteSpace = core_storage_data['wrap']
+      ? ''
+      : 'nowrap';
 
     let display = 'inline-block';
     let height = core_storage_data['vertical-height'];
@@ -100,6 +103,7 @@ function repo_init(){
         'vertical-height': '420px',
         'vertical-width': '42px',
         'wave-count': 20,
+        'wrap': false,
       },
       'storage-menu': '<table><tr><td><input class=mini id=distance max=15 min=1 step=any type=number><td>Distance 1-15'
         + '<tr><td><input class=mini id=horizontal-height type=text><td>Horizontal Height'
@@ -108,7 +112,8 @@ function repo_init(){
         + '<tr><td><select id=orientation><option value=0>Horizontal<option value=1>Vertical</select><td>Orientation'
         + '<tr><td><input class=mini id=vertical-height type=text><td>Vertical Height'
         + '<tr><td><input class=mini id=vertical-width type=text><td>Vertical Width'
-        + '<tr><td><input class=mini id=wave-count min=1 step=1 type=number><td>Wave Count</table>',
+        + '<tr><td><input class=mini id=wave-count min=1 step=1 type=number><td>Wave Count'
+        + '<tr><td><input id=wrap type=checkbox><td>Wrap</table>',
       'title': 'ColorWaves.htm',
       'ui-elements': [
         'waves',
