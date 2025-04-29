@@ -74,7 +74,10 @@ function repo_init(){
     core_repo_init({
       'events': {
         'randomize': {
-          'onclick': core_repo_reset,
+          'onclick': function(){
+              core_escape();
+              randomize();
+          },
         },
         'remake': {
           'onclick': function(){
@@ -88,12 +91,6 @@ function repo_init(){
         'wave_positions': [0, 0, 0],
       },
       'info': '<button id=randomize type=button>Randomize</button><button id=remake type=button>Remake</button>',
-      'reset': function(){
-          if(core_menu_open){
-              core_escape();
-          }
-          randomize();
-      },
       'storage': {
         'distance': 9,
         'horizontal-height': '42px',
