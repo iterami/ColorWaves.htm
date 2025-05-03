@@ -98,7 +98,7 @@ function repo_init(){
         'interval': 100,
         'orientation': 1,
         'vertical-height': '420px',
-        'vertical-width': '42px',
+        'vertical-width': '5%',
         'wave-count': 20,
         'wrap': false,
       },
