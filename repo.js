@@ -13,15 +13,9 @@ function randomize(){
         : -1,
     ];
     wave_positions = [
-      core_random_integer({
-        'max': core_storage_data['wave-count'],
-      }),
-      core_random_integer({
-        'max': core_storage_data['wave-count'],
-      }),
-      core_random_integer({
-        'max': core_storage_data['wave-count'],
-      }),
+      core_random_integer(core_storage_data['wave-count']),
+      core_random_integer(core_storage_data['wave-count']),
+      core_random_integer(core_storage_data['wave-count']),
     ];
 
     update_waves();
