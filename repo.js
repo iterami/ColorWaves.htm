@@ -13,38 +13,38 @@ function randomize(){
         : -1,
     ];
     wave_positions = [
-      core_random_integer(core_storage_data['wave-count']),
-      core_random_integer(core_storage_data['wave-count']),
-      core_random_integer(core_storage_data['wave-count']),
+      core_random_integer(core_storage_data.count),
+      core_random_integer(core_storage_data.count),
+      core_random_integer(core_storage_data.count),
     ];
 
     update_waves();
 
     core_interval_modify({
       'id': 'color-waves-interval',
-      'interval': core_storage_data['interval'],
+      'interval': core_storage_data.interval,
       'todo': update_waves,
     });
 }
 
 function remake_waves(){
-    let loop_counter = Math.floor(core_storage_data['wave-count']) - 1;
+    let loop_counter = Math.floor(core_storage_data.count) - 1;
     let wave_html = '';
     do{
         wave_html += '<div id=' + loop_counter + '></div>';
     }while(loop_counter--);
-    core_elements['waves'].innerHTML = wave_html;
-    core_elements['waves'].style.whiteSpace = core_storage_data['wrap']
+    core_elements.waves.innerHTML = wave_html;
+    core_elements.waves.style.whiteSpace = core_storage_data.wrap
       ? ''
       : 'nowrap';
 
     let display = 'inline-block';
-    let height = core_storage_data['vertical-height'];
-    let width = core_storage_data['vertical-width'];
-    if(core_storage_data['orientation'] === 0){
+    let height = core_storage_data.vertical_height;
+    let width = core_storage_data.vertical_width;
+    if(core_storage_data.orientation === 0){
         display = 'block';
-        height = core_storage_data['horizontal-height'];
-        width = core_storage_data['horizontal-width'];
+        height = core_storage_data.horizontal_height;
+        width = core_storage_data.horizontal_width;
     }
 
     for(const element in core_elements){
@@ -52,7 +52,7 @@ function remake_waves(){
             delete core_elements[element];
         }
     }
-    loop_counter = Math.floor(core_storage_data['wave-count']) - 1;
+    loop_counter = Math.floor(core_storage_data.count) - 1;
     do{
         core_elements[loop_counter] = document.getElementById(loop_counter);
         const style = core_elements[loop_counter].style;
@@ -86,24 +86,24 @@ function repo_init(){
       },
       'info': '<button id=randomize type=button>Randomize</button><button id=remake type=button>Remake</button>',
       'storage': {
+        'count': 20,
         'distance': 9,
-        'horizontal-height': '42px',
-        'horizontal-width': '100%',
+        'horizontal_height': '42px',
+        'horizontal_width': '100%',
         'interval': 100,
         'orientation': 1,
-        'vertical-height': '420px',
-        'vertical-width': '5%',
-        'wave-count': 20,
+        'vertical_height': '420px',
+        'vertical_width': '5%',
         'wrap': false,
       },
       'storage-menu': '<table><tr><td><input class=mini id=distance max=15 min=1 step=any type=number><td>Distance 1-15'
-        + '<tr><td><input class=mini id=horizontal-height type=text><td>Horizontal Height'
-        + '<tr><td><input class=mini id=horizontal-width type=text><td>Horizontal Width'
+        + '<tr><td><input class=mini id=horizontal_height type=text><td>Horizontal Height'
+        + '<tr><td><input class=mini id=horizontal_width type=text><td>Horizontal Width'
         + '<tr><td><input class=mini id=interval min=1 step=any type=number><td>Interval'
         + '<tr><td><select id=orientation><option value=0>Horizontal<option value=1>Vertical</select><td>Orientation'
-        + '<tr><td><input class=mini id=vertical-height type=text><td>Vertical Height'
-        + '<tr><td><input class=mini id=vertical-width type=text><td>Vertical Width'
-        + '<tr><td><input class=mini id=wave-count min=1 step=1 type=number><td>Wave Count'
+        + '<tr><td><input class=mini id=vertical_height type=text><td>Vertical Height'
+        + '<tr><td><input class=mini id=vertical_width type=text><td>Vertical Width'
+        + '<tr><td><input class=mini id=count min=1 step=1 type=number><td>Wave Count'
         + '<tr><td><input id=wrap type=checkbox><td>Wrap</table>',
       'title': 'ColorWaves.htm',
       'ui-elements': [
@@ -119,7 +119,7 @@ function update_waves(){
     let loop_counter = 2;
     do{
         wave_positions[loop_counter] += wave_directions[loop_counter];
-        if(wave_positions[loop_counter] > core_storage_data['wave-count'] - 1){
+        if(wave_positions[loop_counter] > core_storage_data.count - 1){
             wave_directions[loop_counter] = -1;
 
         }else if(wave_positions[loop_counter] < 1){
@@ -129,13 +129,13 @@ function update_waves(){
 
     const distance = Math.max(
       Math.min(
-        core_storage_data['distance'],
+        core_storage_data.distance,
         15
       ),
       1
     );
 
-    loop_counter = Math.floor(core_storage_data['wave-count']) - 1;
+    loop_counter = Math.floor(core_storage_data.count) - 1;
     do{
         const new_colors = [
           Math.max(
