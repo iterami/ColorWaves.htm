@@ -106,7 +106,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=count min=1 step=1 type=number><td>Wave Count'
         + '<tr><td><input id=wrap type=checkbox><td>Wrap</table>',
       'title': 'ColorWaves.htm',
-      'ui-elements': [
+      'ui_elements': [
         'waves',
       ],
     });
