@@ -96,7 +96,7 @@ function repo_init(){
         'vertical_width': '5%',
         'wrap': false,
       },
-      'storage-menu': '<table><tr><td><input class=mini id=distance max=15 min=1 step=any type=number><td>Distance 1-15'
+      'storage_menu': '<table><tr><td><input class=mini id=distance max=15 min=1 step=any type=number><td>Distance 1-15'
         + '<tr><td><input class=mini id=horizontal_height type=text><td>Horizontal Height'
         + '<tr><td><input class=mini id=horizontal_width type=text><td>Horizontal Width'
         + '<tr><td><input class=mini id=interval min=1 step=any type=number><td>Interval'
