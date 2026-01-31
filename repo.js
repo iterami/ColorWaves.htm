@@ -21,7 +21,7 @@ function randomize(){
     update_waves();
 
     core_interval_modify({
-      'id': 'color-waves-interval',
+      'id': 'interval',
       'interval': core_storage_data.interval,
       'todo': update_waves,
     });
