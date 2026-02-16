@@ -69,14 +69,14 @@ function repo_init(){
       'events': {
         'randomize': {
           'onclick': function(){
-              core_escape();
               randomize();
+              core_escape();
           },
         },
         'remake': {
           'onclick': function(){
-              core_escape();
               remake_waves();
+              core_escape();
           },
         },
       },
