@@ -84,7 +84,7 @@ function repo_init(){
         'wave_directions': [0, 0, 0],
         'wave_positions': [0, 0, 0],
       },
-      'info': '<button id=randomize type=button>Randomize</button><button id=remake type=button>Remake</button>',
+      'info': '<button class=medium id=randomize type=button>Randomize</button><button class=medium id=remake type=button>Remake</button>',
       'storage': {
         'count': 20,
         'distance': 9,
