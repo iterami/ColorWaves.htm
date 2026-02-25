@@ -28,15 +28,15 @@ function randomize(){
 }
 
 function remake_waves(){
-    let loop_counter = Math.floor(core_storage_data.count) - 1;
-    let wave_html = '';
-    do{
-        wave_html += '<div id=' + loop_counter + '></div>';
-    }while(loop_counter--);
-    core_elements.waves.innerHTML = wave_html;
     core_elements.waves.style.whiteSpace = core_storage_data.wrap
       ? ''
       : 'nowrap';
+
+    let wave_html = '';
+    for(let i = 0; i < core_storage_data.count; i++){
+        wave_html += '<div id=' + i + '></div>';
+    }
+    core_elements.waves.innerHTML = wave_html;
 
     let display = 'inline-block';
     let height = core_storage_data.vertical_height;
@@ -52,14 +52,13 @@ function remake_waves(){
             delete core_elements[element];
         }
     }
-    loop_counter = Math.floor(core_storage_data.count) - 1;
-    do{
-        core_elements[loop_counter] = document.getElementById(loop_counter);
-        const style = core_elements[loop_counter].style;
+    for(let i = 0; i < core_storage_data.count; i++){
+        core_elements[i] = document.getElementById(i);
+        const style = core_elements[i].style;
         style.display = display;
         style.height = height;
         style.width = width;
-    }while(loop_counter--);
+    }
 
     randomize();
 }
@@ -116,16 +115,15 @@ function repo_init(){
 }
 
 function update_waves(){
-    let loop_counter = 2;
-    do{
-        wave_positions[loop_counter] += wave_directions[loop_counter];
-        if(wave_positions[loop_counter] > core_storage_data.count - 1){
-            wave_directions[loop_counter] = -1;
+    for(let i = 0; i < 3; i++){
+        wave_positions[i] += wave_directions[i];
+        if(wave_positions[i] > core_storage_data.count - 1){
+            wave_directions[i] = -1;
 
-        }else if(wave_positions[loop_counter] < 1){
-            wave_directions[loop_counter] = 1;
+        }else if(wave_positions[i] < 1){
+            wave_directions[i] = 1;
         }
-    }while(loop_counter--);
+    }
 
     const distance = Math.max(
       Math.min(
@@ -134,25 +132,22 @@ function update_waves(){
       ),
       1
     );
-
-    loop_counter = Math.floor(core_storage_data.count) - 1;
-    do{
+    for(let i = 0; i < core_storage_data.count; i++){
         const new_colors = [
           Math.max(
-            distance - Math.abs(loop_counter - wave_positions[0]),
+            distance - Math.abs(wave_positions[0] - i),
             0
           ).toString(16),
           Math.max(
-            distance - Math.abs(loop_counter - wave_positions[1]),
+            distance - Math.abs(wave_positions[1] - i),
             0
           ).toString(16),
           Math.max(
-            distance - Math.abs(loop_counter - wave_positions[2]),
+            distance - Math.abs(wave_positions[2] - i),
             0
           ).toString(16),
         ];
 
-        core_elements[loop_counter].style.backgroundColor =
-          '#' + new_colors[0] + new_colors[1] + new_colors[2];
-    }while(loop_counter--);
+        core_elements[i].style.backgroundColor = '#' + new_colors[0] + new_colors[1] + new_colors[2];
+    }
 }
