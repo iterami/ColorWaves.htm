@@ -103,7 +103,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=vertical_height type=text><td>Vertical Height'
         + '<tr><td><input class=mini id=vertical_width type=text><td>Vertical Width'
         + '<tr><td><input class=mini id=count min=1 step=1 type=number><td>Wave Count'
-        + '<tr><td><input id=wrap type=checkbox><td>Wrap</table>',
+        + '<tr><td class=right><input id=wrap type=checkbox><td><label for=wrap>Wrap</label></table>',
       'title': 'ColorWaves.htm',
       'ui_elements': [
         'waves',
